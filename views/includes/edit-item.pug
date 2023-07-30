@@ -1,0 +1,3 @@
+form(id='edit-item-' + todo.id ,hx-post="/todos/update/" + todo.id, class="edit-item-form")
+    input.edit(type="text", name="name", value=todo.name)
+    button.edit(type="button", hx-get="/todos/" + todo.id, hx-target="#edit-item-" + todo.id, hx-swap="outerHTML") back

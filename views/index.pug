@@ -1,0 +1,42 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1')
+        title Template • TodoMVC
+        link(rel='stylesheet' href='/index.css')
+
+    body
+        section.todoapp
+            header.header
+                h1 todos
+                form(hx-post="/todos", hx-target="#todo-list", hx-swap="afterbegin", _="on htmx:afterOnLoad set #txtTodo.value to ''")
+                    input#txtTodo.new-todo(name="todo",placeholder='What needs to be done?', autofocus='')
+            // This section should be hidden by default and shown when there are todos
+            section.main
+                ul#todo-list.todo-list
+                    // List items should get the class `editing` when editing and `completed` when marked as completed
+                    include includes/todo-list
+
+
+            // This footer should be hidden by default and shown when there are todos
+            footer.footer
+                // This should be `0 items left` by default
+                include includes/item-count
+
+        footer.info
+            p Click to edit a todo
+            // Remove the below line ↓
+            p
+                | Template by&nbsp;
+                a(href='http://sindresorhus.com') Sindre Sorhus
+            // Change this out with your name and url ↓
+            p
+                | Original code from&nbsp;
+                a(href='https://twitter.com/rajasegar_c') Rajasegar Chandran
+            p
+                | Part of&nbsp;
+                a(href='http://todomvc.com') TodoMVC
+
+        script(src='https://unpkg.com/htmx.org@1.3.1')
+        script(src='https://unpkg.com/hyperscript.org@0.0.5')
